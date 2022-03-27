@@ -1,14 +1,14 @@
-Envy to load YAML based configuration file.
+confy to load YAML based configuration file.
 
 ## Features
 
-* Load global configuration file `.envy.yaml` or `.envy.yml`.
-* Load specific configuration file conditionally based. `.envy.prod.yml` or `.envy.dev.yml`.
+* Load global configuration file `.confy.yaml` or `.confy.yml`.
+* Load specific configuration file conditionally based. `.confy.prod.yml` or `.confy.dev.yml`.
 
 ## Usage
 
-1. Add your global configuration `.envy.yml`.
-2. Optionally add another envy file to override specific environment keys `.envy.prod.yml`.
+1. Add your global configuration `.confy.yml`.
+2. Optionally add another envy file to override specific environment keys `.confy.prod.yml`.
 3. Load envy as follows.
 
 ```dart
