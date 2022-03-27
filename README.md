@@ -7,7 +7,7 @@ confy to load YAML based configuration file.
 
 ## Usage
 
-1. Add your global configuration `.confy.yml`.
+1. Add your global configuration `.confy.yml` in the same dart application directory.
 2. Optionally add another envy file to override specific environment keys `.confy.prod.yml`.
 3. Load envy as follows.
 
