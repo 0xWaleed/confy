@@ -30,7 +30,12 @@ _loadEnvy(envyFile) {
 
 envyLoad({EnvironmentResolverFunction? environmentResolver}) {
   for (final file in files) {
-    _loadEnvy(file.replaceFirst("%s", (environmentResolver ?? () => "")()!));
+    if (file.contains("%s") && environmentResolver != null) {
+      String? environment = environmentResolver();
+      if (environment != null) _loadEnvy(file.replaceFirst("%s", environment));
+      continue;
+    }
+    _loadEnvy(file);
   }
 }
 

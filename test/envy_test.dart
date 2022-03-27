@@ -67,6 +67,11 @@ testSpecificEnvironment() {
     envyLoad(environmentResolver: () => "dev");
     expect(envy("not.exist", defaultValue: 99), equals(99));
   });
+
+  test("should not throw when environmentResolver return null", () {
+    envyLoad(environmentResolver: () => null);
+    expect(envy("not.exist", defaultValue: 99), equals(99));
+  });
 }
 
 testWhenNoEnvyFileExist() {
