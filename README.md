@@ -9,7 +9,7 @@ confy to load YAML based configuration file.
 
 1. Add your global configuration `.confy.yml` in the same dart application directory.
 2. Optionally add another envy file to override specific environment keys `.confy.prod.yml`.
-3. Load envy as follows.
+3. Load Confy as follows.
 
 ```dart
 import "package:confy/confy.dart";
@@ -20,8 +20,17 @@ main() {
 
   print("name ${confy("NAME")}");
   print("description ${confy("DESC")}");
+
+  int v(chunk) {
+    return confy("APP.VERSION.$chunk");
+  }
+
+  final appVersion = "${v("MAJOR")}.${v("MINOR")}.${v("PATCH")}";
+
+  print("app version: $appVersion");
+
   print("key not exist ${confy("MY_SECRET", defaultValue: 123)}");
-  
+
   // ... your code
 }
 ```
