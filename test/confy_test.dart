@@ -14,6 +14,7 @@ testBasicUsage() {
   test("load confy nested level key", () {
     confyLoad();
     expect(confy("SECRET.TOKEN"), equals("321"));
+    expect(confy("SECRET.PLATFORM.OS"), equals("win"));
   });
 
   test("return null when top level key is not exist", () {
@@ -98,21 +99,24 @@ main() {
     confyFileExtension = "yaml";
     setUpAll(() {
       File(".confy.$confyFileExtension").writeAsStringSync("""
-    NAME: WALEED
-    SECRET:
-      KEY: 123
-      TOKEN: "321"
+NAME: WALEED
+SECRET:
+  KEY: 123
+  TOKEN: "321"
+  PLATFORM:
+    OS: win
     """);
 
       File(".confy.dev.$confyFileExtension").writeAsStringSync("""
-    NAME: WALEED
-    SECRET:
-      KEY: 123
-      TOKEN: "444"
-      SEED: "8-8"
+NAME: WALEED
+SECRET:
+  KEY: 123
+  TOKEN: "444"
+  SEED: "8-8"
+  PLATFORM:
+    OS: win
     """);
     });
-
     group("basic usage", testBasicUsage);
     group("specific environment", testSpecificEnvironment);
     group("when no confy file exist", testWhenNoConfyFileExist);
@@ -128,24 +132,29 @@ main() {
     confyFileExtension = "yml";
     setUpAll(() {
       File(".confy.$confyFileExtension").writeAsStringSync("""
-    NAME: WALEED
-    SECRET:
-      KEY: 123
-      TOKEN: "321"
+NAME: WALEED
+SECRET:
+  KEY: 123
+  TOKEN: "321"
+  PLATFORM:
+    OS: win
     """);
 
       File(".confy.dev.$confyFileExtension").writeAsStringSync("""
-    NAME: WALEED
-    SECRET:
-      KEY: 123
-      TOKEN: "444"
-      SEED: "8-8"
+NAME: WALEED
+SECRET:
+  KEY: 123
+  TOKEN: "444"
+  SEED: "8-8"
+  PLATFORM:
+    OS: win
     """);
     });
     group("basic usage", testBasicUsage);
     group("specific environment", testSpecificEnvironment);
     group("when no confy file exist", testWhenNoConfyFileExist);
     group("when both file exist", testWhenBothFileExist);
+
     tearDownAll(() {
       File(".confy.$confyFileExtension").deleteSync();
       File(".confy.dev.$confyFileExtension").deleteSync();
