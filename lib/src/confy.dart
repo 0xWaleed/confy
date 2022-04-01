@@ -9,27 +9,6 @@ typedef EnvironmentResolverFunction = String? Function();
 final files = [".confy", ".confy.%s"];
 final extensions = ["yaml", "yml"];
 
-// void _replaceEnvironmentValue(Map entries, [int increment = 0]) {
-//   for (final entry in entries.entries) {
-//
-//     if (entry.value is YamlMap) {
-//       _replaceEnvironmentValue(entry.value, ++increment);
-//       return;
-//     }
-//
-//     if (entry.value is! String) {
-//       continue;
-//     }
-//
-//     String value = entry.value;
-//     if (value.startsWith("\$")) {
-//       String realValue = value.replaceFirst("\${", "").replaceFirst("}", "");
-//       String realEnvValue = value.replaceFirst(entry.value, Platform.environment[realValue] ?? "");
-//       entries.update(entry.key, (value) => realEnvValue);
-//     }
-//   }
-// }
-
 _loadConfy(confyFile) {
   String? file;
   for (final ext in extensions) {
