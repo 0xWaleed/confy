@@ -20,12 +20,11 @@ main() {
 
   print("name ${confy("NAME")}");
   print("description ${confy("DESC")}");
+  print("environment path: ${confy("PATH")}");
 
-  int v(chunk) {
-    return confy("APP.VERSION.$chunk");
-  }
+  final v = confy("APP.VERSION"); // returns Map
 
-  final appVersion = "${v("MAJOR")}.${v("MINOR")}.${v("PATCH")}";
+  final appVersion = "${v?["MAJOR"]}.${v?["MINOR"]}.${v?["PATCH"]}";
 
   print("app version: $appVersion");
 

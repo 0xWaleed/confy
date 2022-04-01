@@ -36,6 +36,21 @@ testBasicUsage() {
     confyLoad();
     expect(confy("not.exist", defaultValue: 99), equals(99));
   });
+
+  test("can reference environment variable", () {
+    confyLoad();
+    expect(confy("MYPATH"), equals(Platform.environment["PATH"]));
+  });
+
+  test("can reference environment variable in nested key", () {
+    confyLoad();
+    expect(confy("PARENT.MYPATH"), equals(Platform.environment["PATH"]));
+  });
+
+  test("return the value if we it has incomplete \${ ", () {
+    confyLoad();
+    expect(confy("MYPATH_1"), equals("\${PATH"));
+  });
 }
 
 testSpecificEnvironment() {
@@ -73,6 +88,21 @@ testSpecificEnvironment() {
     confyLoad(environmentResolver: () => null);
     expect(confy("not.exist", defaultValue: 99), equals(99));
   });
+
+  test("can reference environment variable", () {
+    confyLoad();
+    expect(confy("MYPATH"), equals(Platform.environment["PATH"]));
+  });
+
+  test("can reference environment variable in nested key", () {
+    confyLoad();
+    expect(confy("PARENT.MYPATH"), equals(Platform.environment["PATH"]));
+  });
+
+  test("return the value if we it has incomplete \${ ", () {
+    confyLoad();
+    expect(confy("MYPATH_1"), equals("\${PATH"));
+  });
 }
 
 testWhenNoConfyFileExist() {
@@ -100,6 +130,10 @@ main() {
     setUpAll(() {
       File(".confy.$confyFileExtension").writeAsStringSync("""
 NAME: WALEED
+MYPATH: \${PATH}
+MYPATH_1: \${PATH
+PARENT:
+  MYPATH: \${PATH}
 SECRET:
   KEY: 123
   TOKEN: "321"
@@ -109,6 +143,10 @@ SECRET:
 
       File(".confy.dev.$confyFileExtension").writeAsStringSync("""
 NAME: WALEED
+MYPATH: \${PATH}
+MYPATH_1: \${PATH
+PARENT:
+  MYPATH: \${PATH}
 SECRET:
   KEY: 123
   TOKEN: "444"
@@ -133,6 +171,10 @@ SECRET:
     setUpAll(() {
       File(".confy.$confyFileExtension").writeAsStringSync("""
 NAME: WALEED
+MYPATH: \${PATH}
+MYPATH_1: \${PATH
+PARENT:
+  MYPATH: \${PATH}
 SECRET:
   KEY: 123
   TOKEN: "321"
@@ -142,6 +184,10 @@ SECRET:
 
       File(".confy.dev.$confyFileExtension").writeAsStringSync("""
 NAME: WALEED
+MYPATH: \${PATH}
+MYPATH_1: \${PATH
+PARENT:
+  MYPATH: \${PATH}
 SECRET:
   KEY: 123
   TOKEN: "444"

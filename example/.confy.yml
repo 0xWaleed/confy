@@ -1,5 +1,6 @@
 NAME: Waleed
 DESC: Simple app
+PATH: ${PATH} # returns the Environment PATH variable
 APP:
   VERSION:
     MAJOR: 1

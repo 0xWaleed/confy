@@ -1,3 +1,7 @@
+## 1.1.0
+
+Add ability to add confy value from environment by using ${KEY} syntax
+
 ## 1.0.0+1
 
 Update docs/examples.
