@@ -54,3 +54,7 @@ T? confy<T>(String key, {T? defaultValue}) {
   }
   return confyObjectPointer;
 }
+
+confySet(String key, value) {
+  _confyObject[key] = value;
+}

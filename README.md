@@ -1,5 +1,9 @@
 confy to load YAML based configuration file.
 
+## Why
+
+I love yaml <3
+
 ## Features
 
 * Load global configuration file `.confy.yaml` or `.confy.yml`.
@@ -20,9 +24,9 @@ main() {
 
   print("name ${confy("NAME")}");
   print("description ${confy("DESC")}");
-  print("environment path: ${confy("PATH")}");
+  print("environment path: ${confy("PATH")}"); // from System Environment set ./examples/.confy.yml
 
-  final v = confy("APP.VERSION"); // returns Map
+  final v = confy("APP.VERSION");
 
   final appVersion = "${v?["MAJOR"]}.${v?["MINOR"]}.${v?["PATCH"]}";
 
@@ -30,6 +34,8 @@ main() {
 
   print("key not exist ${confy("MY_SECRET", defaultValue: 123)}");
 
+  confySet("NAME", "Edited"); // useful when doing unit testing
+  print("name ${confy("NAME")}");
   // ... your code
 }
 ```

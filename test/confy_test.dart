@@ -124,6 +124,18 @@ testWhenBothFileExist() {
   });
 }
 
+testAbilityToSetValueAtRuntime() {
+  test("able to set value", () {
+    confySet("xx", "yy");
+    expect(confy("xx"), equals("yy"));
+  });
+
+  test("able to append value", () {
+    confySet("parent", {"child": "yy"});
+    expect(confy("parent.child"), equals("yy"));
+  });
+}
+
 main() {
   group(".yaml", () {
     confyFileExtension = "yaml";
@@ -206,4 +218,6 @@ SECRET:
       File(".confy.dev.$confyFileExtension").deleteSync();
     });
   });
+
+  group("ability to set value", testAbilityToSetValueAtRuntime);
 }

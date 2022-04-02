@@ -8,7 +8,7 @@ main() {
 
   print("name ${confy("NAME")}");
   print("description ${confy("DESC")}");
-  print("environment path: ${confy("PATH")}");
+  print("environment path: ${confy("PATH")}"); // from System Environment set ./examples/.confy.yml
 
   final v = confy("APP.VERSION");
 
@@ -18,5 +18,7 @@ main() {
 
   print("key not exist ${confy("MY_SECRET", defaultValue: 123)}");
 
+  confySet("NAME", "Edited"); // useful when doing unit testing
+  print("name ${confy("NAME")}");
   // ... your code
 }
